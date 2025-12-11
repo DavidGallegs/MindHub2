@@ -62,12 +62,14 @@ Podemos poner imagenes de 2 formas:
 
 **FORMA 1:**  
 Usando la siguiente estructura: `![Texto alternativo](/ruta/a/la/imagen.jpg)`  
+
 ![Imagen](./images/fondo7.jpg)
 
 **FORMA 2**  
 Usando la estructura `![HOLA][img]`.  
 Y luego poniendo la asociación: `[img]: ./images/fondo7.jpg`  
 Se pueden mostrar imagenes:  
+
 ![hola][img]
 
 [img]: ./images/fondo7.jpg
