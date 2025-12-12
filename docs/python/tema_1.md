@@ -21,21 +21,22 @@ Y los que son valores **negativos** como `False` o `0`
 
 ### STRINGS
 
-Las cadenas en python usan `''` o `""`, tambien podemos colocar dentro saltos de linea `\n`
+Las cadenas en python usan `''` o `""`  
+Tambien podemos colocar dentro saltos de linea `\n`
 
-### GENERALIDADES
+## GENERALIDADES
 
-#### SIN VALOR EXISTENTE
+### SIN VALOR EXISTENTE
 
 La forma de colocar que no sabemos un valor es poniendo `Variable = None`
 
-#### VERIFICAR TIPO DE DATO
+### VERIFICAR TIPO DE DATO
 
-Usamos la función `type()`, esta nos dira que tipo es
+Usamos la función `type()`, esta nos dira que tipo es la variable.
 
-#### ASIGNACIÓN MÚLTIPLE
+### ASIGNACIÓN MÚLTIPLE
 
-Podemos asignar valores múltples: `x,y,z = "Texto",2,-400
+Podemos asignar valores múltples: `x,y,z = "Texto",2,-400.
 
 ## OPERADORES
 
@@ -52,12 +53,12 @@ Podemos asignar valores múltples: `x,y,z = "Texto",2,-400
 
 ### CADENAS
 
-En las cadenas, las comillas `''` o `""`, si colocamos dentro de una variable o un print `"""texto"""` o `'''Texto'''` permite la multilínea.
+En las cadenas, las comillas `''` o `""`, sí colocamos dentro de una variable o un print `"""texto"""` o `'''Texto'''` permite la multilínea.
 
 ### EXTRA
 
-Para comentarios líneales usamos `#`, y multilínea usamos `""" Texto """` o `''' Texto '''`  
-Luego tenemos el `\` que continua la línea  
+Para comentarios líneales usamos `#` y multilínea usamos `""" Texto """` o `''' Texto '''`  
+Luego tenemos el `\` que continua la línea.  
 Y el `@` que sirve como decorador.
 
 ## FUNCIONES MATEMÁTICAS PREDEFINIDAS
@@ -75,7 +76,7 @@ Y el `@` que sirve como decorador.
 
 Tenemos los primitivos como `bool(x)`, `int(x)`, `float(x)`, `str(x)`  
 Para convertir a valores complejos sin parte imaginaria usamos `complex(x)`  
-Para convertir un valor complejo, cuya parte real es `x` y la pate imaginaria es `y`, utilizamos `complex(x,y)`
+Para convertir un valor complejo, cuya parte real es `x` y la pate imaginaria es `y` utilizamos `complex(x,y)`
 
 ## ENTRADA Y SALIDA
 
