@@ -85,3 +85,24 @@ Por otro lado esta `print(f"")` que permite usar variables dentro de comillas.
 Si usamos la siguiente estructura: `print("",end="")` cancela el salo de línea.  
 
 Para recibir datos utilizamos `input()` y puede estar dentro de conversores de tipos de datos.
+
+## FUNCIONES DE STRINGS
+
+`cadena.upper()` → Convierte a mayúsculas.  
+`cadena.lower()` → Convierte a minúsculas.  
+`cadena.capitalize()` → Devuelve la primera letra en mayúscula.  
+`cadena.title()` →  Devuelve la primera letra en mayúscula de cada palabra.  
+`cadena.strip()` →  Elimina espacios en blanco al inicio y final de la cadena.  
+`cadena.replace("Laura","Olivia")` → Ssutituye partes de la cadena.  
+`cadena.split(" ")` → Divide la cadena en una lista, usando un 'separador'.  
+`texto = " ".join(lista)` → Devuelve una lista a una cadena usando un 'separador'.  
+`cadena.find("D")` → Devuelve la posición en la que encuentra esa subcadena , -1 si no está.  
+`cadena.index("D")` → Igual que find, pero lanza una exepción si no está.  
+`cadena.startswith("Buenos")` → Devuelve true si empieza por ese substring.  
+`cadena.endswith("Laura")` → Devuelve true si termina por ese substring.  
+`cadena.isalpha()` → Devuelve true si todos los carácteres son letras.  
+`cadena.isdigit()` → Devuelve true si todos los carácteres son números.  
+`cadena.isalnum()` → Devuelve true si todos los carácteres son letras o números.  
+`cadena.isspace()` → Devuelve true si todos los carácteres son espacios en blanco.  
+`cadena.count("a")` → Devuelve el números de apariciones de esa subcadena en la cadena.  
+`cadena.zfill(3)` → Llena de zeros el inicio de la cadena hasta alcanzar la longitud deseada.  
