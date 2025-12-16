@@ -55,6 +55,27 @@ Podemos asignar valores múltples: `x,y,z = "Texto",2,-400.
 
 En las cadenas, las comillas `''` o `""`, sí colocamos dentro de una variable o un print `"""texto"""` o `'''Texto'''` permite la multilínea.
 
+Tenemos carácteres especiales como `\n`, `\'` o `\"`  
+Y para usar `\` ponemos `r` delante de la cadena.
+
+Podemos acceder los carácteres de una cadena usando índices `[n]` ya sean positivos o negativos.  
+
+Podemos obtener subcadenas de las cadenas, paa ello usamos `cadena[start:end]`  
+
+- Ejemplos:  
+  
+~~~python
+texto ="Python"
+
+print(texto[0:4]) # Pyth (índices de 0 a 3)
+print(texto[::2]) # Pto (caràcteress del 0 al 5 de 2 en 2)
+print(texto[1:4:2]) # yh (caràcteress 1 al 3 de 2 en 2)
+print(texto[:3]) # Hol (desde el índice 0 al índice 2)
+print(texto[::-1]) # invierte la cadena
+~~~
+
+Tambien podemos ver la longitud de una cadena con `len()`  
+
 ### EXTRA
 
 Para comentarios líneales usamos `#` y multilínea usamos `""" Texto """` o `''' Texto '''`  

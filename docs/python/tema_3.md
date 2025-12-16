@@ -129,3 +129,29 @@ resta(5,2) # Nofunciona
 ~~~
 
 ## ENTORNOS VIRTUALES
+
+Un entorno virtual es un entorno aislado de Python que permite instalar  
+y usar paquetes s de un proyecto sin afectar al al resto de archivos o carpetas.
+
+### COMANDOS INICIALES
+
+Para cualquier comando usamos `py -m pip` (relacionado con pip)  
+`py -m pip --version` > Ver versión.  
+`py -m pip list` > Mostrar paquetes instalados.  
+`py -m pip show "nombre paquete"` > Ver informacion sobre ese paquete  
+
+### CREAR ENTORNO VIRTUAL
+
+1. Creamos y nos metemos en esa carpeta (terminal).  
+2. Crear un entorno virtual en esa carpeta: `py -m venv .venv`  
+3. Observamos que se ha creado dentro una capeta con más carpetas como include, lin, scripts...  
+4. Activar el entorno (Una cosa es crearlo y otra activarlo): `.\.venv\Scripts\Activate.`ps1 (powershell)  
+5. En terminal nos sale `(.venv)`, es decir estamos dentro del entorno virtual.
+
+### INSTALAR UN PAQUETE
+
+1. `py -m pip install "nombre paquete"`
+2. Vemos que se ha instalado y creamos en la carpeta , para ejecutar el archivo usamos el comando `py nombre_archivo.py`
+3. Desinstalar > `py -m pip uninstall "nombre_paquete"`  
+4. Para salir usamos `deactivate`  
+5. Borrar el entorno virtual > `rm -R .venv`  
