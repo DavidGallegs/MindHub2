@@ -82,3 +82,8 @@ Ejemplo: <https://youtube.com>
 ## CANCELAR MK
 
 Poniendo una `\` delante del Markdown, lo cancela.
+
+## CREAR TABLAS
+
+Colocando `|` podemos crear tablas, donde poniendo `|-----|` creamos las cabezeras.  
+Y las filas se crean extensiendo la tabla en las siguientes líneas con `|`  
