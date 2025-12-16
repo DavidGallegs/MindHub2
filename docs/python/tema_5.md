@@ -1,5 +1,7 @@
 # TEMA 5
 
+Mejorar apuntes de ficheros y los de SQL porque están incompletos
+
 ## ACCESO A FICHEROS
 
 ### FICHEROS DE TEXTO
@@ -236,7 +238,7 @@ BORRAR REGISTROS
 
 ~~~
 
-BORRAR TABLAS 
+BORRAR TABLAS  
 
 ~~~python
 
