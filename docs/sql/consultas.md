@@ -31,8 +31,9 @@ Los operadores que tenemos son:
     `WHERE cod_dpto IN ("D003","D004");`  
 - Valores nulos: Usando `IS NOT NULL` o `IS NULL`
     `WHERE nombre IS NOT NULL;`
-- Rango de valores: Tenemos `BETWEEN` junto con `AND`  
+- Rango de valores: Tenemos `BETWEEN` junto con `AND` Se puede usar con valores numéricos y fechas.  
     `WHERE salario BETWEEN 1800 AND 2200`
+
 - Operadores lógicos: `AND`, `OR`, `NOT`
   
 ~~~sql
@@ -49,3 +50,16 @@ Podemos ordenar alfabéticamente, fechas y números usamos `ORDER BY`
 Se puede ordenar de forma ascendente con `ASC` y descendente con `DESC`  
 Su estructura es: `SELECT nombre FROM empleados ORDER BY nombre ASC`  
 Podemos usar como valores los nombres de los campos o números que indican la posición del campo en el `SELECT`
+
+## ALIAS
+
+Se usa para darle a una columna o tabla un nombre temporal.  
+
+~~~sql
+-- Alias tabla y columna
+SELECT salario AS dinero FROM empleado AS trabajadores;
+
+-- Alias grupal
+SELECT CONCAT(dni, ' ', nombre, ' ', apellidos) AS informacion_empleado
+FROM empleado;
+~~~
