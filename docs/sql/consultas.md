@@ -63,3 +63,26 @@ SELECT salario AS dinero FROM empleado AS trabajadores;
 SELECT CONCAT(dni, ' ', nombre, ' ', apellidos) AS informacion_empleado
 FROM empleado;
 ~~~
+
+## GROUP BY
+
+El `GROUP BY` se usa para agrupar filas que tienen el mismo valor
+en una o varias columnas, y aplicar funciones de agregación
+sobre cada grupo.
+
+Y toda columna del SELECT que no esté dentro de una función
+de agregación debe aparecer en el GROUP BY.
+
+~~~sql
+-- Ejemplo
+SELECT cod_dpto, COUNT(*) AS "Empleados por departamento" FROM empleado
+GROUP by cod_dpto;
+
+-- Ejemplo con JOIN
+SELECT e.cod_dpto, d.nombre AS "Nombre Departametno", COUNT(*) AS "Cantidad de empleados"  
+FROM empleado AS e
+INNER JOIN departamento AS d ON d.cod_dpto = e.cod_dpto
+GROUP BY e.cod_dpto, d.nombre;
+~~~
+
+<!-- https://www.w3schools.com/mysql/mysql_having.asp -->
