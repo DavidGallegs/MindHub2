@@ -18,10 +18,25 @@ Para evitar repetir registros usamos `DISTINCT`
 ## WHERE
 
 La sentencia `WHERE` sirve para clasificar o buscar registros específicos.  
+**Recuerda:** En SQl Oracle usamos `''` para valores de texto VARCHAR2 o CHAR.  
 
-Los operadores que tenemos son:  
+### OPERADORES
 
 - Operadores de comparación: `=`, `<`, `>`, `<=`, `>=`, `<>`
+
+- Comprobación por patrones: Uso del `LIKE` junto con caractéres `%` y/o `_`
+    `WHERE nombre LIKE 'P%';`  
+
+- Buscar en varios valores: Uso del `IN` y `NOT IN`  
+    `WHERE cod_dpto IN ('D003','D004');`  
+
+- Valores nulos: Usando `IS NOT NULL` o `IS NULL`
+    `WHERE nombre IS NOT NULL;`
+
+- Rango de valores: Tenemos `BETWEEN` junto con `AND` Se puede usar con valores numéricos y fechas.  
+    `WHERE salario BETWEEN 1800 AND 2200`
+
+- Operadores lógicos: `AND`, `OR`, `NOT`
 
 | USO DE NOT | EXPLICACIÓN |
 | ------------ | ------------ |
@@ -30,17 +45,6 @@ Los operadores que tenemos son:
 | `WHERE nombre NOT IN ('Juan', 'Pedro');` | Registros que no tengan el nombre Juan ni Pedro |
 | `WHERE edad NOT BETWEEN 18 AND 65;` | Registros que no estén entre 18 y 65 años |
 
-- Comprobación por patrones: Uso del `LIKE` junto con `%` y/o `_`
-    `WHERE nombre LIKE 'P%';`  
-- Buscar en varios valores: Uso del `IN` y `NOT IN`  
-    `WHERE cod_dpto IN ("D003","D004");`  
-- Valores nulos: Usando `IS NOT NULL` o `IS NULL`
-    `WHERE nombre IS NOT NULL;`
-- Rango de valores: Tenemos `BETWEEN` junto con `AND` Se puede usar con valores numéricos y fechas.  
-    `WHERE salario BETWEEN 1800 AND 2200`
-
-- Operadores lógicos: `AND`, `OR`, `NOT`
-  
 ~~~sql
 SELECT * FROM empleado
 WHERE cod_dpto IN ("D003","D005") 
@@ -48,6 +52,59 @@ AND (salario BETWEEN 1800 AND 2200)
 AND nombre NOT LIKE "L%"
 ORDER BY nombre ASC;
 ~~~
+
+### FUNCIONES A NIVEL DE FILA (CAMPOS)
+
+| FUNCIÓN DE CARACTARES | DESCRIPCIÓN |
+| -------- | ---------- |
+| `LOWER(CAMPO)` | Convierte a minúsculas todos los caracteres |
+| `UPPER(CAMPO)` | Convierte a mayúsculas todos los caracteres |
+| `INITCAP(CAMPO)` | Convierte a mayúscula la primera letra |
+
+| MANIPULACIÓN DE CARACTARES | DESCRIPCIÓN |
+| -------- | ---------- |
+| `CONCAT(CAMPO\|Expresión, CAMPO\|Expresión)` | Concatena 2 valores, ya sean campos o cadenas |
+| `SUBSTR(CAMPO,Inicio,Longitud)` | Exrae subcadenas (Inicio no es 0) |
+| `LENGTH(CAMPO)` | Devuelve la longitud de la cadena |
+| `INSTR(CAMPO,'caracter')` | Devuelve la posición del caractre que se busca |
+| `LPAD(CAMPO,longitud,'caracter')` | Coloca a la izquieda un caracter hasta rellenar. Funciona si longitud > Length(campo) |
+| `RPAD(CAMPO,longitud,'caracter')` | Coloca a la derecha un caracter hasta rellenar. Funciona si longitud > Length(campo) |
+| `REPLACE(CAMPO,'caracter','remplazo')` | Remplaza subcadeas por otras subcadenas |
+| `TRANSLATE(CAMPO,'caracter','remplazo')` | Remplaza caracteres por otros caracteres y puede borrar |
+| `TRIM(CAMPO), LTRIM(CAMPO,''), RTRIM(CAMPO,'')` | Elimina espacios en blanco o caracteres |
+
+### FUNCIONES MATEMÁTICAS
+
+| FUNCIONES MATEMÁTICAS | DESCRIPCIÓN |
+| -------- | ---------- |
+| `ROUND(CAMPO,N)` | Redondea a N decimales |
+| `TRUNC(CAMPO,N)` | Trunca a N decimales |
+| `MOD(CAMPO,N)` | Devuelve el resto de la división |
+| `ABS(CAMPO)` | Devuelve el valor absoluto |
+| `CEIL(CAMPO)` | Redondea hacia arriba al entero más cercano |
+| `FLOOR(CAMPO)` | Redondea hacia abajo al entero más cercano |
+| `POWER(CAMPO,N)` | Eleva un valor a N |
+| `SIGN(CAMPO)` | Si es mayor a 0 devuelve 1, si es negativo -1 y si es 0 da 0 |
+| ``SQRT(CAMPO)` | Devuelve la raiz cuadrada |
+
+### FUNCIONES DE FECHAS
+
+Por lo general las fechas se devuelven DD/MM/AA.  
+Se pueden añadir y quitar dias con `+` y `-`  
+La resta entre fechas devuelve la diferencia de días.  
+
+| FUNCIONES DE FECHA | DESCRIPCIÓN |
+| -------- | ---------- |
+| `MONTHS_BETWEEN(F1,F2)` | Devuelve los meses de diferencia |
+| `ADD_MONTHS(F,N)` | Añade N meses a la fecha |
+| `NEXT_DAY (F,'DÍA')` | Devuelve la fecha del día marcado usando de punto de partida F |
+| `LAST_DAY(F)` | Devuelve el último día de ese mes |
+| `TRUNC(F,'FORMAT')` | Trunca al formato indicado |
+| `ROUND(F,'FORMAT')` | Redondea al formato indicado |
+| `EXTRACT('DAY \| MONTH \| YEAR'FROM CAMPO)` | Extrae un valor de la fecha |
+| `TO_CHAR(F,'FORMAT')` | Convierte una fecha a una cadena de otro formato |
+
+- Para el `TO_CHAR` tenemos los formatos de: `Y,YY,YYY,YYY, YEAR`, `MM,MON,MONTH`,`DY,DAY,SYEAR,DD,DDD`
 
 ## ORDER BY
 
@@ -122,3 +179,5 @@ GROUP BY d.nombre
 HAVING COUNT(e.cod_empleado) >= 2
 ORDER BY total_empleados DESC;
 ~~~
+
+<!--https://www.w3schools.com/mysql/mysql_exists.asp -->
