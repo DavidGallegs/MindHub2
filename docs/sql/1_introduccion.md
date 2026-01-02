@@ -3,17 +3,17 @@
 ## SELECT
 
 La sentencia `SELECT` sirve para seleccionar columnas.  
-Para seleccionar todos las columnas de una tabla usamos `*`
-    SELECT * FROM empleados;  
+Para seleccionar todos las columnas de una tabla usamos `*`  
+`SELECT * FROM empleados;`
 
 Las columnas pueden tener `etiquetas` que se usa colocando una plabra entre comillas.  
-    SELECT nompro "Nombre Profesor", salpro Salario from profesores;
+`SELECT nompro "Nombre Profesor", salpro Salario from profesores;`
 
-Podemos crear frases usando `|''|` por ejemplo:
-    SELECT nompro || 'TIENE LA ESPECIALIDAD EN ' || esppro ESPECIALIDAD from profesores;
+Podemos crear frases usando `|''|` por ejemplo:  
+`SELECT nompro || 'TIENE LA ESPECIALIDAD EN ' || esppro ESPECIALIDAD from profesores;`
 
 Para evitar repetir registros usamos `DISTINCT`  
-    SELECT COUNT(DISTINCT nombre) FROM empleados;  
+`SELECT COUNT(DISTINCT nombre) FROM empleados;`
 
 ## WHERE
 
