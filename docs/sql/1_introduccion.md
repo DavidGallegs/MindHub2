@@ -15,6 +15,15 @@ Podemos crear frases usando `|''|` por ejemplo:
 Para evitar repetir registros usamos `DISTINCT`  
 `SELECT COUNT(DISTINCT nombre) FROM empleados;`
 
+## ALIAS
+
+Se usa para darle a una columna o tabla un nombre temporal.  
+
+~~~sql
+-- Alias tabla y columna
+SELECT salario AS dinero FROM empleado AS trabajadores;
+~~~
+
 ## WHERE
 
 La sentencia `WHERE` sirve para clasificar o buscar registros específicos.  
@@ -47,7 +56,7 @@ La sentencia `WHERE` sirve para clasificar o buscar registros específicos.
 
 ~~~sql
 SELECT * FROM empleado
-WHERE cod_dpto IN ("D003","D005") 
+WHERE cod_dpto IN ('D003','D005') 
 AND (salario BETWEEN 1800 AND 2200)
 AND nombre NOT LIKE "L%"
 ORDER BY nombre ASC;
@@ -106,24 +115,44 @@ La resta entre fechas devuelve la diferencia de días.
 
 - Para el `TO_CHAR` tenemos los formatos de: `Y,YY,YYY,YYY, YEAR`, `MM,MON,MONTH`,`DY,DAY,SYEAR,DD,DDD`
 
-## ORDER BY
+### FUNCIONES GENERALES
 
-Podemos ordenar alfabéticamente, fechas y números usamos `ORDER BY`  
-Se puede ordenar de forma ascendente con `ASC` y descendente con `DESC`  
-Su estructura es: `SELECT nombre FROM empleados ORDER BY nombre ASC`  
-Podemos usar como valores los nombres de los campos o números que indican la posición del campo en el `SELECT`
-
-## ALIAS
-
-Se usa para darle a una columna o tabla un nombre temporal.  
+| FUNCIÓN | DESCRIPCIÓN |
+| -------- | ---------- |
+| `NVL(CAMPO,VALOR)` | Sustituye un valor null, por el valor indicado |
+| `DECODE` | Es un if de comparaciones de igualdad que transforma un valor a otro valor, con valor por defecto si no se cumple |
+| `CASE` | Es un switch que genera una nueva columna. |
 
 ~~~sql
--- Alias tabla y columna
-SELECT salario AS dinero FROM empleado AS trabajadores;
+-- DECODE
+SELECT nompro,
+       DECODE(esppro,
+              'WEB', 'Desarrollo Web',
+              'BD', 'Bases de Datos',
+              'SOFTWARE', 'Programación',
+              'Otra') AS especialidad
+FROM profesores;
 
--- Alias grupal
-SELECT CONCAT(dni, ' ', nombre, ' ', apellidos) AS informacion_empleado
-FROM empleado;
+-- CASE (COMPARATIVO)
+SELECT nompro,
+       CASE esppro
+         WHEN 'WEB' THEN 'Desarrollo Web'
+         WHEN 'BD' THEN 'Bases de Datos'
+         WHEN 'SOFTWARE' THEN 'Programación'
+         ELSE 'Otra'
+       END AS especialidad
+FROM profesores;
+
+
+-- CASE (REAL)
+SELECT nompro,
+       CASE
+         WHEN salpro < 1500 THEN 'Bajo'
+         WHEN salpro BETWEEN 1500 AND 2500 THEN 'Medio'
+         ELSE 'Alto'
+       END AS nivel_salario
+FROM profesores;
+
 ~~~
 
 ## GROUP BY
@@ -147,6 +176,54 @@ INNER JOIN departamento AS d ON d.cod_dpto = e.cod_dpto
 GROUP BY e.cod_dpto, d.nombre;
 ~~~
 
+### FUNCIONES GROUP BY
+
+Dentro de cada función pudemos añadir la cláusula `DISTINCT` en caso de no querer valores repetidos.  
+
+#### MIN() y MAX()
+
+La función `MIN()` devuelve el valor más pequeño de una columna.  
+Y la función `MAX()` devuelve el valor más grande de una columna.
+
+~~~sql
+SELECT MIN(salario) AS Menor_Salario FROM empleado;
+
+SELECT MAX(salario) AS Mayor_Salario FROM empleado;
+~~~
+
+#### COUNT(), AVG(), SUM()
+
+Función `COUNT()` devuelve el número de registros que coinciden con la condición.  
+La función `AVG()` devuelve el promedio de una columna numérica.  
+Y la función `SUM()` devuelve la suma de una columna numérica.  
+
+~~~sql
+SELECT COUNT(salario) FROM empleado
+WHERE salario > 2200;
+
+SELECT AVG(salario) AS media_D002 FROM empleado
+WHERE cod_dpto = "D002";
+
+SELECT SUM(salario) AS total_D001 FROM empleado
+WHERE cod_dpto = "D001";
+~~~
+
+#### VARIANCE Y STDDEV
+
+La función `VARIANCE()` devuelve la varianza de una columna numérica.
+La varianza mide qué tanto se dispersan los valores respecto a la media.
+
+La función `STDDEV()` devuelve la desviación estándar de una columna numérica.
+La desviación estándar es la raíz cuadrada de la varianza y se interpreta más fácilmente.
+
+~~~sql
+SELECT STDDEV(salpro), esppro FROM profesores
+GROUP BY esppro;
+
+SELECT VARIANCE(salpro), esppro FROM profesores
+GROUP BY esppro;
+~~~
+
 ## HAVING
 
 La cláusula `HAVING` se usa para filtrar grupos creados con `GROUP BY`,
@@ -159,6 +236,13 @@ INNER JOIN departamento AS d ON d.cod_dpto = e.cod_dpto
 GROUP BY e.cod_dpto, d.nombre
 HAVING COUNT(*) >= 2;
 ~~~
+
+## ORDER BY
+
+Podemos ordenar alfabéticamente, fechas y números usamos `ORDER BY`  
+Se puede ordenar de forma ascendente con `ASC` y descendente con `DESC`  
+Su estructura es: `SELECT nombre FROM empleados ORDER BY nombre ASC`  
+Podemos usar como valores los nombres de los campos o números que indican la posición del campo en el `SELECT`
 
 ## ORDEN CORRECTO EN UNA CONSULTA
 
