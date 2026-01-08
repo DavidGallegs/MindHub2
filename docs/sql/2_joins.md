@@ -62,6 +62,17 @@ FROM empleado AS e
 CROSS JOIN proyecto AS p;
 ~~~
 
+## FULL OUTER JOIN
+
+En las `FULL OUTER JOIN` obtenemos los registros de A, B y su intersección.
+
+~~~sql
+-- Muestra el nombre de los profesores y el curso al que imparten. SI no tienen curso, sale NULL
+SELECT p.nompro AS profesor, c.numcur AS curso
+FROM profesores p
+FULL OUTER JOIN cursos c ON p.numpro = c.numpro;
+~~~
+
 ## SELF JOIN
 
 Un `SELF JOIN` es un JOIN donde una tabla se une consigo misma.
@@ -83,24 +94,3 @@ SELECT e.nombre AS cod_empleado, j.nombre AS jefe
 FROM empleado AS e
 RIGHT JOIN empleado AS j ON e.jefe_id = j.cod_empleado
 ~~~
-
-## UNION Y UNION ALL
-
-El operador `UNION` permite combinar los resultados de dos o más consultas SELECT en un único conjunto de resultados.  
-Por defecto, elimina los registros duplicados.
-
-~~~sql
-SELECT nombre, cod_dpto  FROM empleado
-UNION
-SELECT nombre, cod_dpto  FROM departamento
-~~~
-
-Por otro lado `UNION ALL` combina los resultados de varias consultas SELECT sin eliminar duplicados.  
-
-~~~sql
-SELECT nombre, cod_dpto  FROM empleado
-UNION ALL
-SELECT nombre, cod_dpto  FROM departamento
-~~~
-
-Todas las consultas deben tener el mismo número de columnas y tiene que haber compatibildiad de datos.  
