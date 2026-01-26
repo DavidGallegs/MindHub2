@@ -1,0 +1,3 @@
+# MÉTODOS DE PAGO CON REDSYS
+
+## PASO 1
