@@ -1,187 +1,91 @@
-# WEB ASTRO
+# UNIDAD 2
 
-## UNIDAD 3
+## VISUALIZAR MARKDOWN BÁSICO (MK)
 
-### COMPONENTES
+Creamos en `src/pages` una carpeta para el markdown.
+Astro permite cargar el markdown directamente en la web
+Podemos ver ese contenido escribiendo la ruta en el navegador.
 
-Los componentes estarán en la carpeta de `src/components`
-**Creamos un componente:**
+## CONTENIDO DINÁMICO (JS)
 
-~~~astro
-<!-- src/components/Navigation.astro -->
----
----
-<a href="/">Inicio</a>
-<a href="/about/">Sobre mi</a>
-<a href="/blog/">Blog</a>
-~~~
+### VARIABLES
 
-**Llamamos a un componente:**
+Para crear html dinámico usamos JavaScript entre los `---`.
+Y luego lo llamamos usando `{}`
+Se puede usar variables, funciones, objetos, arrays, condiciones...
 
 ~~~astro
 ---
-import Navigation from '../components/navigation.astro';
-import "../styles/global.css";
-const titulo = "Astro"
+const tituloWeb = "Index web";
 ---
+
 <html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
-        <title>{titulo}</title>
+        <title>{tituloWeb}</title>
     </head>
-        <h1>Astro Web Prueba</h1>
-        <Navigation/>
+</html>
+~~~
+
+### CONDICIONALES
+
+Al código podemos añadir operadordes de `if` para renderizar o no elementos
+
+~~~astro
+---
+const happy = true;
+const finished = false;
+const goal = 3;
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>About Page</title>
+    </head>
+    <body>
+        <p>Renderizar</p>
+        {happy && <p>¡Estoy feliz de aprender Astro!</p>}
+        {finished && <p>¡He terminado este tutorial!</p>}
+        {goal === 3 ? <p>Mi objetivo son 3 días.</p> : <p>Mi objetivo no son 3 días.</p>}
     </body>
 </html>
 ~~~
 
-Podemos crear componentes que se usen en otros componentes.
-Los componentes pueden recibir variables:
+### ARRAYS
 
-**Componente Hijo:**
-
-~~~astro
----
-const { platform, username } = Astro.props;
----
-<!-- social.astro -->
-
-<a href={`https://www.${platform}.com/${username}`}>{platform}</a>
-~~~
-
-**Componente Padre:**
+En el caso de arrays, para mostrarlos usamos `map()`
 
 ~~~astro
 ---
-import Social from './social.astro';
+const mascotas = ["perro", "gato", "loro"]
 ---
-<!-- footer.astro -->
-<footer>
-    <Social platform="twitter" username="astrodotbuild" />
-    <Social platform="github" username="withastro" />
-    <Social platform="youtube" username="astrodotbuild" />
-</footer>
-~~~
 
-Los componentes pueden estilizarse
-
-~~~astro
----
-const { platform, username } = Astro.props;
----
-<!-- social.astro -->
-<a href={`https://www.${platform}.com/${username}`}>{platform}</a>
-
-<style>
-  a {
-    padding: 0.5rem 1rem;
-    color: white;
-    background-color: #4c1d95;
-    text-decoration: none;
-  }
-</style>
-~~~
-
-Los componentes se pueden reutilizar.
-Es recomendable que los componentes tengan sus style propios
-Y en la página principal donde se usen reciban el style del archivo css
-Evitando importar para cada compoenente un estilo del archivo css.
-
-### SCRIPTS CON ASTRO
-
-En el propio archivo astro podemos insertar javaScript con la etiqueta `<script>`
-Otra forma es con una importación de un archivo js
-
-~~~astro
-<body>
-      <Footer/>
-  <script>import "../scripts/menu.js";</script>
-</body>
-~~~
-
-~~~js
-    const menu = document.querySelector('.menu');
-
-    menu?.addEventListener('click', () => {
-    const isExpanded = menu.getAttribute('aria-expanded') === 'true';
-    menu.setAttribute('aria-expanded', `${!isExpanded}`);
-    });
-~~~
-
-## UNIDAD 4
-
-### CONSTRUIR PLANTILLAS
-
-Las plantillas se crean en `src/layouts` y contienen estructuras y componentes
-Para poder editar estos layouts tenemos que colocar la etiqueta `<slot/>`
-que permite que a partir de esa ubicación, el codigo inyeacto se escriba ahí.
-
-**Layout:**
-
-~~~astro
----
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/global.css';
-const pageTitle = "Página de inicio";
----
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
-  </head>
-  <body>
-    <Header />
-    <h1>{pageTitle}</h1>
-    <slot />
-    <Footer />
-    <script>
-      import "../scripts/menu.js";
-    </script>
-  </body>
+<html lang="en">
+    <body>
+        <ul>
+            {mascotas.map((mascota) => <li>{mascota}</li>)}
+        </ul>
+    </body>
 </html>
 ~~~
 
-**Index.astro + Layout:**
+## ESTILIZAR (CSS)
+
+Para estelizar elementos o una  página completa creamos un archivo `.css` en la carpeta `src/styles/`.
+Y luego en la página o componente `.astro` importamos los estilos.
+El `import` siempre tiene que estar al inicio.
 
 ~~~astro
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-const pageTitle = "Página de inicio";
+import '../styles/global.css'
 ---
-<BaseLayout>
-  <h2>Mi impresionante subtítulo del blog</h2>
-</BaseLayout>
+
+<html lang="en">
+    ...
+</html>
 ~~~
-
-### PASAR VALORES ESPECÍFICOS
-
-Podemos modificar al layout para recibir parámetros
-
-~~~astro
----
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/global.css';
-const { pageTitle } = Astro.props;
----
-~~~
-
-~~~astro
----
-import BaseLayout from '../layouts/BaseLayout.astro';
-const pageTitle = "Página de inicio";
----
-<BaseLayout pageTitle={pageTitle}>
-  <h2>Mi impresionante subtítulo del blog</h2>
-</BaseLayout>
-~~~
-
-### CREAR Y PASAR DATOS DE UNA PLANTILLA DE BLOG PERSONALIZADA
-
-Mirar el recurso de Introducción a YAML y ver que es eso.

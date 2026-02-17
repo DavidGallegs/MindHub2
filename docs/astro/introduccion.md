@@ -14,9 +14,8 @@ que se catalogan con islas interactivas (HTML+JS+CSS) y islas estáticas (HTML+C
 
 1. `npm create astro@latest`
    ![imagen](images/astro_instalacion.png)
-2. `npm run dev` → Inicia servidor de desarrollo
-3. `npm run dev` → Crea una carpeta `dis/` con la web
-4. `npm run preview` → Muestra la versión final de la web
+2. `npm run dev` → Inicia servidor de desarrollo y crea una carpeta `dis/` con la web
+3. `npm run preview` → Muestra la versión final de la web
 
 ## ESTRUCTURA DE PROYECTO
 
@@ -28,6 +27,6 @@ que se catalogan con islas interactivas (HTML+JS+CSS) y islas estáticas (HTML+C
 
 En `src` tenemos:
 `src/pages` → Paginas de la web.
-`src/component` → Componentes de framewroks (Vue o React) y componentes astro.
+`src/components` → Componentes de framewroks (Vue o React) y componentes astro.
 `src/layouts` → Contiene las plantillas que definene la estructura del UI en una o varias páginas.
 `src/styles` → Guarda archivos CSS y/o Sass
