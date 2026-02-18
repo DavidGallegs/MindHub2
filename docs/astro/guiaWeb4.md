@@ -124,3 +124,5 @@ const { frontmatter } = Astro.props;
     </body>
 </html>
 ~~~
+
+Pendiente: <https://dev.to/paulasantamaria/introduction-to-yaml-125f>
