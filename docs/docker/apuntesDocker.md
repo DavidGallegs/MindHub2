@@ -93,6 +93,8 @@ En proyectos reales, solemos tener diferentes configuraciones dependiendo de si 
 Usamos la bandera `-f` (file) para indicarle el nombre exacto:
 `docker compose -f docker-compose-dev.yml up -d`
 
+Y para borrar todo es: `docker compose -f docker-compose-dev.yml down`
+
 ## VOLÚMENES (PERSISTENCIA DE DATOS)
 
 Los contenedores son **efímeros**. Esto significa que, por defecto, si borras o destruyes un contenedor, **todos los datos que se generaron en su interior se pierden para siempre** (por ejemplo, los registros de una base de datos).
