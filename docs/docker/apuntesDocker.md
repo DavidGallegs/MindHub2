@@ -93,6 +93,17 @@ En proyectos reales, solemos tener diferentes configuraciones dependiendo de si 
 Usamos la bandera `-f` (file) para indicarle el nombre exacto:
 `docker compose -f docker-compose-dev.yml up -d`
 
+En caso de modificaciones en la infraestructura es: `docker compose -f docker-compose-dev.yml up -d --build`
+Para meter los framewroks: Astro, laravel y React, primero nos tenemos que meter en el contenedor e instalarlo,
+por esa razón backend y frontend tienen voluemnes, para conservar esas instalaciones:
+
+- Para frontend usamos: `docker compose -f docker-compose-dev.yml exec frontend sh`
+- Para el backend usamos: `docker compose -f docker-compose-dev.yml exec backend bash`
+
+Una vez dentro usamos los comando `npm` y `composer` para instalar lo encesario.
+
+Para ver que todo a iniciado correctamente usamos: `docker compose -f docker-compose-dev.yml ps`
+
 Y para borrar todo es: `docker compose -f docker-compose-dev.yml down`
 
 ## VOLÚMENES (PERSISTENCIA DE DATOS)
