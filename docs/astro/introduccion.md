@@ -30,3 +30,7 @@ En `src` tenemos:
 `src/components` → Componentes de framewroks (Vue o React) y componentes astro.
 `src/layouts` → Contiene las plantillas que definene la estructura del UI en una o varias páginas.
 `src/styles` → Guarda archivos CSS y/o Sass
+
+## INSTALAR REACT EN ASTRO
+
+Usar en el proyecto el comando `npx astro add react` e instala todo lo necesario.
