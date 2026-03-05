@@ -1,21 +1,31 @@
 # DOCKER II
 
-## CONFIGURACIÓN DE UN DOCKER
+Determinar version de astro, react y laravel al instalarlo
+Y hacer un archivo de versiones de todo:
+
+## CONFIGURACIÓN DE UN DOCKER FRONTEND
 
 Una vez creada la infraestructura tenemos que instalar los frameworks y sus dependencias.
 Asi como poder ver el front en tiempo real, la base de datos y usar comando como `npm run dev`.
 
-1. Nos metemos en la carpeta de frontend del docker
+1. Nos metemos en la contenedor de frontend
 `docker compose -f docker-compose-dev.yml exec frontend sh`
 2. Instalamos el primer framework que es astro.
 `npm create astro@latest .`
-3. Luego ñadimos la extensión de astro con
+3. Instalamos las dependencias faltantes con `npm install`
+4. Luego añadimos la integración de React
 `npx astro add react`
-4. En caso de error usamos el comando `npm install`y luego el paso 3 otra vez.
-5. Con todo instalado para poder "ver" nos vamos al archivo `package.json` y editamos la línea:
+
+5. Para poder "ver" nos vamos al archivo `package.json` y editamos la línea poniendo:
 `"dev": "astro dev --host",`
-6. Para mejor funcioanmiento desactivamos la telemetria
-`npx astro telemetry disable`
+6. Para mejor funcionamiento desactivamos la telemetria en el `.yml`
+
+~~~yml
+ports:
+    ...
+environment:
+      - ASTRO_TELEMETRY_DISABLED=1
+~~~
 
 ## COMANDOS FRONTEND
 
@@ -28,3 +38,44 @@ npm run dev
 
 docker compose -f docker-compose-dev.yml down
 ~~~
+
+## CONFIGURACIÓN DE UN DOCKER BACKEND
+
+1. Nos metemos en la carpeta de backend
+`docker compose -f docker-compose-dev.yml exec backend bash`
+2. Instalamos Laravel
+
+~~~bash
+rm -rf /var/www/html/*
+cd /tmp
+composer create-project laravel/laravel proyecto-temp
+cp -a /tmp/proyecto-temp/. /var/www/html/
+~~~
+
+Volvemos a la carpeta de trabajo y damos permisos al servidor web:
+`cd /var/www/html`
+`chmod -R 777 storage bootstrap/cache`
+
+Configurar archivo `.venv` y buscamos el apartado de `DB_CONNECTION=`
+y pegamos todo este código:
+
+~~~venv
+DB_CONNECTION=mysql
+DB_HOST=base_datos
+DB_PORT=3306
+DB_DATABASE=app_db
+DB_USERNAME=root
+DB_PASSWORD=root
+~~~
+
+### COMANDO BACKEND
+
+~~~cmd
+docker compose -f docker-compose-dev.yml up -d
+
+docker compose -f docker-compose-dev.yml exec backend bash
+
+docker compose -f docker-compose-dev.yml down
+~~~
+
+## PRUEBA COMUNICACIÓN BACK CON FRONT
