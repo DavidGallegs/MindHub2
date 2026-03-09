@@ -37,6 +37,25 @@
    - Quitamos el simbolo `^` para evitar actualizaciones automáticas en `"dependences"`.
    - Añadimos la palabra `--host` a la línea: `"dev": "astro dev --host",`
 
+7. Optimización de TypeScript (Evitar errores fantasma en WSL):
+   Para que VS Code no marque errores de archivos borrados y funcione fluido en Ubuntu:
+   - Vamos a **Settings** → pestaña **Remote [WSL: Ubuntu]**.
+   - Buscamos `typescript watch` y pulsamos en **Edit in settings.json**.
+   - Pegamos este bloque para sincronizar el editor con los eventos de Linux:
+
+   ~~~json
+   {
+       "js/ts.tsserver.watchOptions": "vscode",
+       "typescript.tsserver.watchOptions": {
+           "watchFile": "useFsEvents",
+           "watchDirectory": "useFsEvents",
+           "fallbackPolling": "dynamicPriority"
+       }
+   }
+   ~~~
+
+   - Finalmente, refrescamos el editor: `F1` -> **Developer: Reload Window**.
+
 ### VERSIONES DE ESTA GUÍA FRONTEND
 
 ~~~json
@@ -120,5 +139,5 @@ docker compose -f docker-compose-dev.yml down
 
 ## EXTENSIONES EN WSL:UBUNTU
 
-Al estar en el WSL:Ubuntu, tenemos que volver a instalar las migraciones de Localhost → WSL:Ubuntu.
-Aunque algunas ya están activas por defecto
+Al estar en el WSL:Ubuntu, tenemos que volver a instalar las extensiones de Localhost → WSL:Ubuntu.
+Aunque algunas ya están activas por defecto.
