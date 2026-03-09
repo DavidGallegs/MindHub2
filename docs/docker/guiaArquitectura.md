@@ -118,7 +118,7 @@ docker compose -f docker-compose-dev.yml exec backend bash
 docker compose -f docker-compose-dev.yml down
 ~~~
 
-## EXTENSIONES DE VISUALSTUDIO EN WSL:UBUNTU
+## EXTENSIONES EN WSL:UBUNTU
 
 Al estar en el WSL:Ubuntu, tenemos que volver a instalar las migraciones de Localhost → WSL:Ubuntu.
 Aunque algunas ya están activas por defecto
