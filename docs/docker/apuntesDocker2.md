@@ -1,8 +1,5 @@
 # DOCKER II
 
-Determinar version de astro, react y laravel al instalarlo
-Y hacer un archivo de versiones de todo:
-
 ## CONFIGURACIÓN DE UN DOCKER FRONTEND
 
 Una vez creada la infraestructura tenemos que instalar los frameworks y sus dependencias.
@@ -78,4 +75,21 @@ docker compose -f docker-compose-dev.yml exec backend bash
 docker compose -f docker-compose-dev.yml down
 ~~~
 
-## PRUEBA COMUNICACIÓN BACK CON FRONT
+## OPTIMIZACIÓN ENTRE DOCKERS
+
+### INSTALACIÓN DE LINUX EN WSL
+
+En PowerShell instalaremos linux: `wsl --install -d Ubuntu`.
+Tras la instalación creamos un user con una contraseña.
+Con esto logramos que en linux WSL aparezca la carpeta de ubuntu.
+Luego indicamos cual es el principal: `wsl --set-default Ubuntu`
+
+En el explorador de windows en Linux > Ubuntu > home > user:
+pegamos el proyecto que se va a optimizar.
+
+Por otro lado en VS instalamos la extension de WSL para acceder.
+Aparecera un simbolo `><` con el que nos podremos conectar a WSL
+usando el conectar con WSL usando una distrución → Ubuntu
+En WSL ejecutamos el comando up y funcionará como esperamos.
+
+En caso de borrar el proyecto ysamos en la terminal de Ubuntu: `sudo rm -rf <carpeta>`

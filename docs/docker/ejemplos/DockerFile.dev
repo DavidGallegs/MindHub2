@@ -1,5 +1,0 @@
-# 1. Partimos de la imagen oficial de PHP con un servidor Apache incluido
-FROM php:8.2-apache
-
-# 2. Ejecutamos un comando dentro de la imagen para instalar las extensiones de MySQL
-RUN docker-php-ext-install mysqli pdo pdo_mysql
