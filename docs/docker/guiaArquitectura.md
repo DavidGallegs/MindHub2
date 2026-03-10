@@ -28,7 +28,7 @@
 ## CONFIGURACIÓN DOCKER FRONTEND
 
 1. Nos metemos dentro del docker de frontend: `docker compose -f docker-compose-dev.yml exec frontend sh`
-2. Instalamos Astro: `npm create astro@5.17.1`
+2. Instalamos Astro: `npm create astro@latest`
    - Nombre de la carpeta del proyecto es un `.`
 3. Instalamos React: `npx astro add react`
 4. Salimos del contenedor FrontEnd con `exit`
