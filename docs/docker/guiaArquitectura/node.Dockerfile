@@ -1,5 +1,5 @@
 # Usamos la versión Alpine de Node (ultraligera y optimizada)
-FROM node:20-alpine
+FROM node:22-alpine
 
 # Establecemos el directorio de trabajo por defecto del contenedor
 WORKDIR /app
